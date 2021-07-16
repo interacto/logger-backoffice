@@ -11,6 +11,7 @@ export class AppComponent implements AfterViewInit{
   public usageLogs: Array<UsageLog> = new Array<UsageLog>();
   public errorLogs: Array<LoggingData> = new Array<LoggingData>();
   columnsToDisplay = ['name','sessionID', 'date', 'duration', 'cancelled'];
+  columnsToDisplay2 = ['name', 'message', 'sessionID', 'date', 'duration', 'logLevel', 'type', 'stack'];
   title = 'logger-backoffice';
 
   constructor(private apiService: ApiService) {}

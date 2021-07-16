@@ -14,11 +14,10 @@
 </div>
 
 <div class="content" role="main">
-  Number of usage logs: {{usageLogs.length}}. Number of error logs: {{errorLogs.length}}.
+  <button (click)="refreshData()" id="refreshButton">REFRESH DATA</button>
   <br/><br/>
-  <button (click)="refreshData()">REFRESH</button>
-  <br/>
 
+  <h2>Usage logs</h2>
   <table mat-table [dataSource]="usageLogs">
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef> Name </th>
@@ -45,6 +44,47 @@
     <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
   </table>
 
+  <br/><br/>
+
+  <h2>Error logs</h2>
+  <table mat-table [dataSource]="errorLogs">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let log"> {{log.name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="message">
+      <th mat-header-cell *matHeaderCellDef> Message </th>
+      <td mat-cell *matCellDef="let log"> {{log.msg}} </td>
+    </ng-container>
+    <ng-container matColumnDef="sessionID">
+      <th mat-header-cell *matHeaderCellDef> Session ID </th>
+      <td mat-cell *matCellDef="let log"> {{log.sessionID}} </td>
+    </ng-container>
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef> Date </th>
+      <td mat-cell *matCellDef="let log"> {{log.date}} </td>
+    </ng-container>
+    <ng-container matColumnDef="duration">
+      <th mat-header-cell *matHeaderCellDef> Duration </th>
+      <td mat-cell *matCellDef="let log"> {{log.duration}} </td>
+    </ng-container>
+    <ng-container matColumnDef="logLevel">
+      <th mat-header-cell *matHeaderCellDef> Log level </th>
+      <td mat-cell *matCellDef="let log"> {{log.logLevel}} </td>
+    </ng-container>
+    <ng-container matColumnDef="type">
+      <th mat-header-cell *matHeaderCellDef> Type </th>
+      <td mat-cell *matCellDef="let log"> {{log.type}} </td>
+    </ng-container>
+    <ng-container matColumnDef="stack">
+      <th mat-header-cell *matHeaderCellDef> Stack </th>
+      <td mat-cell *matCellDef="let log"> {{log.stack}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay2"></tr>
+    <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay2"></tr>
+  </table>
+
 <!--  <ng-container *ngFor="let usage of usageLogs">-->
 <!--    <ul>-->
 <!--      <li>Name: {{usage.name}}</li>-->
@@ -55,18 +95,18 @@
 <!--    </ul>-->
 <!--  </ng-container>-->
 
-  <ng-container *ngFor="let error of errorLogs">
-    <ul>
-      <li>Name: {{error.name}}</li>
-      <li>Session Id: {{error.msg}}</li>
-      <li>Session Id: {{error.sessionID}}</li>
-      <li>Date: {{error.date}}</li>
-      <li>Duration: {{error.frontVersion}}</li>
-      <li>LogLevel: {{error.level}}</li>
-      <li>Type: {{error.type}}</li>
-      <li>Stack: {{error.stack}}</li>
-    </ul>
-  </ng-container>
+<!--  <ng-container *ngFor="let error of errorLogs">-->
+<!--    <ul>-->
+<!--      <li>Name: {{error.name}}</li>-->
+<!--      <li>Message: {{error.msg}}</li>-->
+<!--      <li>Session Id: {{error.sessionID}}</li>-->
+<!--      <li>Date: {{error.date}}</li>-->
+<!--      <li>Duration: {{error.frontVersion}}</li>-->
+<!--      <li>LogLevel: {{error.level}}</li>-->
+<!--      <li>Type: {{error.type}}</li>-->
+<!--      <li>Stack: {{error.stack}}</li>-->
+<!--    </ul>-->
+<!--  </ng-container>-->
 
 </div>
 
